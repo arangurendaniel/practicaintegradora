@@ -7,7 +7,6 @@ import viewRouter from './routes/views.router.js'
 import  handlebars  from "express-handlebars";
 // Completar imports que faltan
 
-
 //Declarando Express para usar sus funciones.
 const app = express();
 
