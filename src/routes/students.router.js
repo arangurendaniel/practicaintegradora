@@ -19,6 +19,15 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    try {
+        let {name, lastName, age, courses } = req.body;
+        const nuevoEstudiante = {name, lastName, age, courses};
+        studentService.save(nuevoEstudiante)
+        res.status(201).send({ result: 'success', payload: nuevoEstudiante })
+    } catch (error) {
+        console.error("No se pudo crear estudiante con moongose: " + error);
+        res.status(500).send({ error: "No se pudo crear estudiante con moongose", message: error });
+    }
     //TODO: Resolver esta ruta POST para poder guardar en la persistencia los estudiantes.
 })
 

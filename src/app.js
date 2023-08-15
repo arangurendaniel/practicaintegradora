@@ -2,6 +2,9 @@ import express from 'express';
 import __dirname from './util.js';
 import mongoose from 'mongoose';
 import studentRouter from './routes/students.router.js'
+import courseRouter from './routes/courses.router.js'
+import viewRouter from './routes/views.router.js'
+import  handlebars  from "express-handlebars";
 // Completar imports que faltan
 
 
@@ -14,10 +17,16 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // Configuraciones de .hbs
+app.engine('handlebars', handlebars.engine());
+app.set('views', __dirname +'/views');
+app.set('view engine', 'handlebars');
 
-
+app.use(express.static(__dirname + '/public'));
 
 //Declaración de Routers:
+app.use("/api/students", studentRouter);
+app.use("/api/course", courseRouter);
+app.use("/api/view", viewRouter);
 
 
 
